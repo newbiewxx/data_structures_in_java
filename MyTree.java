@@ -1,6 +1,7 @@
 import javax.swing.tree.TreeNode;
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -99,6 +100,26 @@ public class MyTree {
             }
         }
     }
+
+    /**
+     * 二叉树层序遍历
+     * @param root 根节点
+     */
+    public static void levelOrderTraversal(TreeNode root) {
+        Queue<TreeNode> queue = new LinkedList<TreeNode>();
+        queue.offer(root);
+
+        while (!queue.isEmpty()) {
+            TreeNode node = queue.poll();
+            System.out.println(node.data);
+            if (node.leftChild != null) {
+                queue.offer(node.leftChild);
+            }
+            if (node.rightChild != null) {
+                queue.offer(node.rightChild);
+            }
+        }
+    }
     public static void main(String[] args) {
         LinkedList<Integer> inputList =
                 new LinkedList<Integer>(Arrays.asList(new Integer[]{3,2,8,null,null,10,null,5,null,4} ));
@@ -112,5 +133,4 @@ public class MyTree {
         postOrderTraversal(treeNode);
         preOrderTraveralWithStack(treeNode);
     }
-
 }
